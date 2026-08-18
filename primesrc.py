@@ -48,7 +48,7 @@ import time
 import warnings
 from collections import defaultdict
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qsl, quote, urlencode, urlparse
@@ -1081,13 +1081,24 @@ def fetch_tmdb_now_playing_and_top_rated(
     """
     Fetch movies from TMDB Now Playing (/movie/now_playing) and Top Rated (/movie/top_rated) combined
     up to limit total (default 50).
-    First takes all available from now_playing; if fewer than limit (e.g. only 5 or 9), fills the remainder
-    from top_rated.
+    For Now Playing: strictly filters to movies released between current today date and previous 2 months (last 60 days).
     Excludes any movies already in target_file, existing_input_files, or processed_urls_file.
     Appends newly discovered movie embed URLs (https://primesrc.me/embed/movie?tmdb=<id>) to target_file.
     Returns the list of newly added embed URLs.
     """
     _ensure_file_exists(target_file, "")
+
+    today = datetime.now(timezone.utc).date()
+    two_months_ago = today - timedelta(days=60)
+
+    def _is_within_last_two_months(date_str: str) -> bool:
+        if not date_str:
+            return False
+        try:
+            d = datetime.strptime(date_str.strip(), "%Y-%m-%d").date()
+            return two_months_ago <= d <= today
+        except Exception:
+            return False
 
     known_tmdb_ids: set[str] = set()
     files_to_check: list[Path] = []
@@ -1112,8 +1123,9 @@ def fetch_tmdb_now_playing_and_top_rated(
                         known_tmdb_ids.add(tid)
 
     log_info(f"Existing known TMDB IDs to exclude: {len(known_tmdb_ids)}")
+    log_info(f"TMDB Now Playing date filter window: {two_months_ago} to {today} (last 2 months)")
 
-    def _fetch_from_endpoint(endpoint: str, target_count: int) -> list[str]:
+    def _fetch_from_endpoint(endpoint: str, target_count: int, filter_recent_date: bool = False) -> list[str]:
         added: list[str] = []
         page = 1
         max_pages = 25
@@ -1129,6 +1141,13 @@ def fetch_tmdb_now_playing_and_top_rated(
                     mid = str(m.get("id", ""))
                     if not mid:
                         continue
+
+                    # Filter by release date (current date to previous 2 months)
+                    if filter_recent_date:
+                        rel_date = str(m.get("release_date") or "").strip()
+                        if not _is_within_last_two_months(rel_date):
+                            continue
+
                     if mid not in known_tmdb_ids:
                         known_tmdb_ids.add(mid)
                         embed_url = f"https://primesrc.me/embed/movie?tmdb={mid}"
@@ -1141,17 +1160,17 @@ def fetch_tmdb_now_playing_and_top_rated(
                 break
         return added
 
-    # 1. Query Now Playing first
-    log_info(f"Fetching from TMDB Now Playing (target: up to {limit})…")
-    np_urls = _fetch_from_endpoint("/movie/now_playing", limit)
-    log_ok(f"Found {len(np_urls)} new Now Playing movie(s)")
+    # 1. Query Now Playing first (strictly last 2 months)
+    log_info(f"Fetching from TMDB Now Playing (target: up to {limit}, release window: {two_months_ago} to {today})…")
+    np_urls = _fetch_from_endpoint("/movie/now_playing", limit, filter_recent_date=True)
+    log_ok(f"Found {len(np_urls)} new Now Playing movie(s) released within last 2 months")
 
     # 2. Fill remainder from Top Rated
     remaining = limit - len(np_urls)
     tr_urls: list[str] = []
     if remaining > 0:
         log_info(f"Filling remaining ({remaining}) from TMDB Top Rated…")
-        tr_urls = _fetch_from_endpoint("/movie/top_rated", remaining)
+        tr_urls = _fetch_from_endpoint("/movie/top_rated", remaining, filter_recent_date=False)
         log_ok(f"Found {len(tr_urls)} new Top Rated movie(s)")
 
     new_urls = np_urls + tr_urls
