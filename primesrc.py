@@ -305,22 +305,22 @@ class ServerOption:
 # ═══════════════════════════════════════════════════════════════
 # HOST PRIORITY CONFIGURATION
 # 1st: voe.sx (host_id: 48)
-# 2nd: luluvdoo (host_id: 68)
-# 3rd: savefiles (host_id: 69)
-# 4th: dood (host_id: 42)
-# 5th: streamta.site (host_id: 43)
-# 6th: bysejikaue / filemoon (host_id: 66)
+# 2nd: bysejikaue / filemoon (host_id: 66)
+# 3rd: luluvdoo (host_id: 68)
+# 4th: savefiles (host_id: 69)
+# 5th: dood (host_id: 42)
+# 6th: streamta.site (host_id: 43)
 # 7th: filenoons / filelions (host_id: 64)
 # 8th: streamwish.to (host_id: 65)
 # ═══════════════════════════════════════════════════════════════
 
 HOST_PRIORITY_ORDER: list[tuple[int, set[str], str]] = [
     (48, {"voe", "voe.sx"}, "voe.sx (host_id: 48)"),
+    (66, {"bysejikaue", "bysejikuar", "bysejikuar.com", "filemoon", "filemoon.sx"}, "bysejikaue (host_id: 66)"),
     (68, {"luluvdoo", "luluvdoo.com", "lulu"}, "luluvdoo (host_id: 68)"),
     (69, {"savefiles", "savefiles.com", "savefile"}, "savefiles (host_id: 69)"),
     (42, {"dood", "dood.watch", "doodstream", "ds2play"}, "dood (host_id: 42)"),
     (43, {"streamta", "streamta.site", "streamtape", "streamtape.com"}, "streamta.site (host_id: 43)"),
-    (66, {"bysejikaue", "bysejikuar", "bysejikuar.com", "filemoon", "filemoon.sx"}, "bysejikaue (host_id: 66)"),
     (64, {"filenoons", "filelions", "filelions.to", "filenoon"}, "filenoons (host_id: 64)"),
     (65, {"streamwish", "streamwish.to"}, "streamwish.to (host_id: 65)"),
 ]
@@ -807,11 +807,11 @@ async def _resolve_movie_options(
     """
     Tries server options for a single movie in prioritized order:
     1st: voe.sx (host_id: 48)
-    2nd: luluvdoo (host_id: 68)
-    3rd: savefiles (host_id: 69)
-    4th: dood (host_id: 42)
-    5th: streamta.site (host_id: 43)
-    6th: bysejikaue / filemoon (host_id: 66)
+    2nd: bysejikaue / filemoon (host_id: 66)
+    3rd: luluvdoo (host_id: 68)
+    4th: savefiles (host_id: 69)
+    5th: dood (host_id: 42)
+    6th: streamta.site (host_id: 43)
     7th: filenoons / filelions (host_id: 64)
     8th: streamwish.to (host_id: 65)
 
@@ -899,7 +899,7 @@ async def stage2_extract_stream_urls(
     stage1_options: list[ServerOption],
     args: argparse.Namespace,
 ) -> list[dict[str, Any]]:
-    log_head("STAGE 2  –  Prioritized stream extraction via FlareSolverr\n(voe.sx [48] -> luluvdoo [68] -> savefiles [69] -> dood [42] -> streamta [43] -> bysejikaue [66] -> filenoons [64] -> streamwish [65])")
+    log_head("STAGE 2  –  Prioritized stream extraction via FlareSolverr\n(voe.sx [48] -> bysejikaue [66] -> luluvdoo [68] -> savefiles [69] -> dood [42] -> streamta [43] -> filenoons [64] -> streamwish [65])")
 
     global _print_lock
     _print_lock = asyncio.Lock()
@@ -916,7 +916,7 @@ async def stage2_extract_stream_urls(
     total_movies = len(movie_to_options)
     log_info(f"Total movies to resolve : {total_movies}")
     log_info(f"Total available server keys across movies : {len(stage1_options)}")
-    log_info("Priority order : 1.voe.sx(48) -> 2.luluvdoo(68) -> 3.savefiles(69) -> 4.dood(42) -> 5.streamta(43) -> 6.bysejikaue(66) -> 7.filenoons(64) -> 8.streamwish(65)")
+    log_info("Priority order : 1.voe.sx(48) -> 2.bysejikaue(66) -> 3.luluvdoo(68) -> 4.savefiles(69) -> 5.dood(42) -> 6.streamta(43) -> 7.filenoons(64) -> 8.streamwish(65)")
 
     # Load already-known media URLs
     json_out_path: Path = getattr(args, "json_out", DEFAULT_JSON_SUMMARY)
