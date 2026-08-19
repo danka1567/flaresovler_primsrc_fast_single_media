@@ -69,12 +69,13 @@ DEFAULT_JSON_SUMMARY       = HERE / "movie_streaming_data.json"
 DEFAULT_ERROR_LOG          = HERE / "errorsfaced.txt"
 DEFAULT_PROCESSED_URLS     = HERE / "already_processed_urls_list.txt"
 
-STAGE1_REQUEST_TIMEOUT = 20    # urllib timeout per /api/v1/s call
-STAGE2_BATCH_SIZE      = 2     # concurrent requests per batch
-STAGE2_RELOADS         = 3     # retry attempts per failed URL
-STAGE2_FINAL_RETRIES   = 2     # extra full retry passes for still-failed keys
-STAGE2_BATCH_DELAY     = 2.0   # seconds between batches
-STAGE2_BAN_COOLDOWN    = 20.0  # extra wait after IP-ban / block error
+STAGE1_REQUEST_TIMEOUT     = 20    # urllib timeout per /api/v1/s call
+STAGE2_BATCH_SIZE          = 2     # concurrent requests per batch
+STAGE2_RELOADS             = 3     # retry attempts per failed URL
+STAGE2_FINAL_RETRIES       = 2     # extra full retry passes for still-failed keys
+STAGE2_BATCH_DELAY         = 2.0   # seconds between batches
+STAGE2_BAN_COOLDOWN        = 20.0  # extra wait after IP-ban / block error
+CHECKPOINT_SAVE_INTERVAL   = 100   # flush results to disk every N completed movies
 
 TMDB_ID_RE = re.compile(r"^\d+$")
 
@@ -568,6 +569,134 @@ def stage1_fetch_api_keys(
 
 
 # ═══════════════════════════════════════════════════════════════
+# CHECKPOINT MANAGER  –  incremental save every N completed movies
+# ═══════════════════════════════════════════════════════════════
+
+class CheckpointManager:
+    """
+    Accumulates Stage-2 results and flushes them to disk (and optionally GitHub)
+    every CHECKPOINT_SAVE_INTERVAL completed movies so that progress is not lost
+    if the pipeline is interrupted by a timeout or a runner crash.
+
+    Checkpoint file layout  (final_stream_urls_stage2.txt  /  already_processed_urls_list.txt)
+    are written incrementally using the same split-append helpers the rest of the
+    pipeline uses.  The JSON summary is also written locally on every flush;
+    GitHub push happens only on full-flush (not per-checkpoint) to avoid rate-limit
+    hammering — it is still called in the normal code-path at the end of Stage 2.
+    """
+
+    def __init__(
+        self,
+        stage1_options: list["ServerOption"],
+        args: "argparse.Namespace",
+        json_out_path: Path,
+        gh_token: str,
+        gh_repo: str,
+        gh_branch: str,
+        gh_available: bool,
+        interval: int = CHECKPOINT_SAVE_INTERVAL,
+    ) -> None:
+        self.stage1_options  = stage1_options
+        self.args            = args
+        self.json_out_path   = json_out_path
+        self.gh_token        = gh_token
+        self.gh_repo         = gh_repo
+        self.gh_branch       = gh_branch
+        self.gh_available    = gh_available
+        self.interval        = interval
+
+        self._lock           = asyncio.Lock()
+        self._completed: int = 0          # total movies finished so far
+        self._since_flush: int = 0        # movies finished since last flush
+
+        # Accumulate all attempt dicts + resolved-tmdb sets across flushes
+        self.all_results:        list[dict[str, Any]]  = []
+        self.fully_resolved_tmdb: set[str]             = set()
+        self.succeeded_api_urls:  set[str]             = set()
+
+        self.processed_urls_file: Path = getattr(args, "processed_urls", DEFAULT_PROCESSED_URLS)
+        self.error_log_file: Path      = getattr(args, "error_log",      DEFAULT_ERROR_LOG)
+
+    async def record(
+        self,
+        succ_opt: "ServerOption | None",
+        succ_res: "dict[str, Any] | None",
+        attempts: "list[dict[str, Any]]",
+    ) -> None:
+        """Called after every movie is resolved (success or failure)."""
+        async with self._lock:
+            self.all_results.extend(attempts)
+
+            if succ_opt and succ_res and succ_res.get("extracted_url"):
+                self.succeeded_api_urls.add(succ_opt.api_url)
+                tid = _extract_tmdb_id(succ_opt.main_url)
+                if tid:
+                    self.fully_resolved_tmdb.add(tid)
+
+            self._completed   += 1
+            self._since_flush += 1
+
+            if self._since_flush >= self.interval:
+                await asyncio.get_running_loop().run_in_executor(None, self._flush)
+                self._since_flush = 0
+
+    def _flush(self) -> None:
+        """Write accumulated results to disk (called from thread-pool to keep async loop free)."""
+        log_info(
+            f"[Checkpoint] Saving after {self._completed} completed movies "
+            f"({len(self.fully_resolved_tmdb)} resolved so far)…"
+        )
+
+        # ── 1. Append newly resolved tmdb_ids to already_processed_urls_list.txt ──
+        existing_processed: set[str] = set()
+        if self.processed_urls_file.exists():
+            for _line in self.processed_urls_file.read_text(encoding="utf-8").splitlines():
+                _line = _line.strip()
+                if _line and not _line.startswith("#"):
+                    existing_processed.add(_line)
+
+        tmdb_to_embed_url: dict[str, str] = {}
+        for _opt in self.stage1_options:
+            _tid = _extract_tmdb_id(_opt.main_url)
+            if _tid and _tid not in tmdb_to_embed_url:
+                tmdb_to_embed_url[_tid] = _opt.main_url
+
+        new_tmdb_ids = self.fully_resolved_tmdb - existing_processed
+        if new_tmdb_ids:
+            lines_to_append = ""
+            for tmdb_id in sorted(new_tmdb_ids, key=int):
+                embed_url = tmdb_to_embed_url.get(
+                    tmdb_id,
+                    f"https://primesrc.me/embed/movie?tmdb={tmdb_id}",
+                )
+                lines_to_append += embed_url + "\n"
+            target_pf = _append_split_text(
+                self.processed_urls_file, lines_to_append, max_bytes=MAX_OUTPUT_FILE_SIZE
+            )
+            log_ok(
+                f"[Checkpoint] Appended {len(new_tmdb_ids)} resolved tmdb_id(s) → {target_pf}"
+            )
+
+        # ── 2. Write partial JSON summary locally ──────────────────────────────
+        try:
+            _write_summary(self.stage1_options, self.all_results, self.json_out_path)
+            log_ok(f"[Checkpoint] Local JSON summary updated → {self.json_out_path}")
+        except Exception as exc:
+            log_warn(f"[Checkpoint] Could not write JSON summary: {exc}")
+
+        # ── 3. Clean error log for resolved items ──────────────────────────────
+        if self.fully_resolved_tmdb:
+            clean_error_log_for_resolved_tmdb_ids(self.error_log_file, self.fully_resolved_tmdb)
+        if self.succeeded_api_urls:
+            clean_error_log_for_resolved_api_urls(self.error_log_file, self.succeeded_api_urls)
+
+        log_ok(
+            f"[Checkpoint] Done — {self._completed} movies processed, "
+            f"{len(self.fully_resolved_tmdb)} resolved total."
+        )
+
+
+# ═══════════════════════════════════════════════════════════════
 # STAGE 2  –  Resolve keys → FlareSolverr → stream URLs
 # ═══════════════════════════════════════════════════════════════
 
@@ -946,9 +1075,31 @@ async def stage2_extract_stream_urls(
     t_start = time.monotonic()
     sem = asyncio.Semaphore(args.batch_size)
 
-    # Process movies concurrently with semaphore
-    tasks = [
-        _resolve_movie_options(
+    gh_token  = getattr(args, "gh_token",  None) or os.environ.get("GH_TOKEN", "")
+    gh_repo   = getattr(args, "gh_repo",   None) or os.environ.get("GH_REPO",  "")
+    gh_branch = getattr(args, "gh_branch", None) or os.environ.get("GH_BRANCH", "main")
+    gh_available = not getattr(args, "no_github_sync", False) and bool(gh_token) and bool(gh_repo)
+
+    checkpoint = CheckpointManager(
+        stage1_options=stage1_options,
+        args=args,
+        json_out_path=json_out_path,
+        gh_token=gh_token,
+        gh_repo=gh_repo,
+        gh_branch=gh_branch,
+        gh_available=gh_available,
+        interval=CHECKPOINT_SAVE_INTERVAL,
+    )
+    log_info(
+        f"Checkpoint saves enabled — results flushed to disk every "
+        f"{CHECKPOINT_SAVE_INTERVAL} completed movies"
+    )
+
+    # ── Wrap each movie task so it reports to the checkpoint manager ──────────
+    async def _resolve_and_checkpoint(
+        idx: int, main_url: str, opts: list[ServerOption]
+    ) -> tuple["ServerOption | None", "dict[str, Any] | None", "list[dict[str, Any]]"]:
+        outcome = await _resolve_movie_options(
             movie_idx=idx,
             total_movies=total_movies,
             main_url=main_url,
@@ -959,31 +1110,41 @@ async def stage2_extract_stream_urls(
             reloads=args.reloads,
             sem=sem,
         )
+        succ_opt, succ_res, attempts = outcome
+        await checkpoint.record(succ_opt, succ_res, attempts)
+        return outcome
+
+    tasks = [
+        _resolve_and_checkpoint(idx, main_url, opts)
         for idx, (main_url, opts) in enumerate(movie_to_options.items(), 1)
     ]
 
     movie_outcomes = await asyncio.gather(*tasks)
 
-    results: list[dict[str, Any]] = []
-    fully_resolved_tmdb: set[str] = set()
-    succeeded_api_urls: set[str] = set()
-    failed_movies: list[str] = []
+    # ── Final flush for the tail batch (< CHECKPOINT_SAVE_INTERVAL movies) ───
+    if checkpoint._since_flush > 0:
+        log_info(
+            f"[Checkpoint] Flushing final {checkpoint._since_flush} movie(s) "
+            f"that did not reach the {CHECKPOINT_SAVE_INTERVAL}-movie threshold…"
+        )
+        await asyncio.get_running_loop().run_in_executor(None, checkpoint._flush)
+        checkpoint._since_flush = 0
 
+    # Pull accumulated state back out of the checkpoint manager
+    results             = checkpoint.all_results
+    fully_resolved_tmdb = checkpoint.fully_resolved_tmdb
+    succeeded_api_urls  = checkpoint.succeeded_api_urls
+
+    failed_movies: list[str] = []
     for (succ_opt, succ_res, attempts) in movie_outcomes:
-        results.extend(attempts)
-        if succ_opt and succ_res and succ_res.get("extracted_url"):
-            succeeded_api_urls.add(succ_opt.api_url)
-            tid = _extract_tmdb_id(succ_opt.main_url)
-            if tid:
-                fully_resolved_tmdb.add(tid)
-        else:
+        if not (succ_opt and succ_res and succ_res.get("extracted_url")):
             if attempts:
                 failed_movies.append(attempts[0].get("api_url", ""))
 
     processed_urls_file: Path = getattr(args, "processed_urls", DEFAULT_PROCESSED_URLS)
     error_log_file: Path      = getattr(args, "error_log", DEFAULT_ERROR_LOG)
 
-    # Save newly resolved tmdb IDs
+    # Final deduplication pass: make sure everything resolved is on disk
     existing_processed: set[str] = set()
     if processed_urls_file.exists():
         for _line in processed_urls_file.read_text(encoding="utf-8").splitlines():
@@ -991,8 +1152,8 @@ async def stage2_extract_stream_urls(
             if _line and not _line.startswith("#"):
                 existing_processed.add(_line)
 
-    new_tmdb_ids = fully_resolved_tmdb - existing_processed
-    if new_tmdb_ids:
+    remaining_new = fully_resolved_tmdb - existing_processed
+    if remaining_new:
         tmdb_to_embed_url: dict[str, str] = {}
         for _opt in stage1_options:
             _tid = _extract_tmdb_id(_opt.main_url)
@@ -1000,7 +1161,7 @@ async def stage2_extract_stream_urls(
                 tmdb_to_embed_url[_tid] = _opt.main_url
 
         lines_to_append = ""
-        for tmdb_id in sorted(new_tmdb_ids, key=int):
+        for tmdb_id in sorted(remaining_new, key=int):
             embed_url = tmdb_to_embed_url.get(
                 tmdb_id,
                 f"https://primesrc.me/embed/movie?tmdb={tmdb_id}",
@@ -1008,9 +1169,9 @@ async def stage2_extract_stream_urls(
             lines_to_append += embed_url + "\n"
 
         target_pf = _append_split_text(processed_urls_file, lines_to_append, max_bytes=MAX_OUTPUT_FILE_SIZE)
-        log_ok(f"Saved {len(new_tmdb_ids)} fully-resolved tmdb_id(s) → {target_pf}: {sorted(new_tmdb_ids)}")
+        log_ok(f"Saved {len(remaining_new)} fully-resolved tmdb_id(s) → {target_pf}: {sorted(remaining_new)}")
 
-    # Clean errorsfaced.txt
+    # Clean errorsfaced.txt of any still-present resolved entries
     if fully_resolved_tmdb:
         clean_error_log_for_resolved_tmdb_ids(error_log_file, fully_resolved_tmdb)
     if succeeded_api_urls:
