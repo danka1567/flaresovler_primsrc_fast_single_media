@@ -6816,3 +6816,11 @@ Total warnings/errors: 3
 [2026-08-20 00:45:10 UTC] [ERR]   [ 139/306] HTTP Error 400: Bad Request  https://primesrc.me/embed/movie?tmdb=921868
 [2026-08-20 00:45:13 UTC] [ERR]   [ 149/306] HTTP Error 400: Bad Request  https://primesrc.me/embed/movie?tmdb=860655
 [2026-08-20 00:45:40 UTC] [ERR]   [ 241/306] HTTP Error 400: Bad Request  https://primesrc.me/embed/movie?tmdb=1676821
+
+======================================================================
+Pipeline run finished: 2026-08-20T01:01:40.318686+00:00
+Total warnings/errors: 3
+======================================================================
+[2026-08-20 01:00:41 UTC] [ERR]   [ 139/306] HTTP Error 400: Bad Request  https://primesrc.me/embed/movie?tmdb=921868
+[2026-08-20 01:00:44 UTC] [ERR]   [ 149/306] HTTP Error 400: Bad Request  https://primesrc.me/embed/movie?tmdb=860655
+[2026-08-20 01:01:17 UTC] [ERR]   [ 241/306] HTTP Error 400: Bad Request  https://primesrc.me/embed/movie?tmdb=1676821
