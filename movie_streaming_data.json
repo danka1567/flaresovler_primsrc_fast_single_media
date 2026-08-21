@@ -1,0 +1,658 @@
+[
+  {
+    "serial": 1,
+    "title": "Silver Bullet",
+    "tmdb/imdb": "17898/tt0090021",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/lenjj5y1yzrb",
+    "host-2": "https://dood.watch/e/lenjj5y1yzrb"
+  },
+  {
+    "serial": 2,
+    "title": "High School",
+    "tmdb/imdb": "27584/tt1247667",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://www.youtube.com/embed/eoSPoamIkXE",
+    "host-2": "https://www.youtube.com/embed/eoSPoamIkXE"
+  },
+  {
+    "serial": 3,
+    "title": "Aata",
+    "tmdb/imdb": "63471/tt0962746",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/9y7m1eemleev",
+    "host-2": "https://dood.watch/e/9y7m1eemleev"
+  },
+  {
+    "serial": 4,
+    "title": "Love Letters",
+    "tmdb/imdb": "75986/tt0085871",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/sohbcwy83kjq",
+    "host-2": "https://dood.watch/e/sohbcwy83kjq"
+  },
+  {
+    "serial": 5,
+    "title": "Bāhubali: The Beginning",
+    "tmdb/imdb": "256040/tt2631186",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/8lwhnec5mfqq",
+    "host-2": "https://dood.watch/e/8lwhnec5mfqq"
+  },
+  {
+    "serial": 6,
+    "title": "The Savior",
+    "tmdb/imdb": "303021/tt3151028",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/9loukfov2ivd",
+    "host-2": "https://dood.watch/e/9loukfov2ivd"
+  },
+  {
+    "serial": 7,
+    "title": "Bāhubali 2: The Conclusion",
+    "tmdb/imdb": "350312/tt4849438",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/l16bmglz5sxt",
+    "host-2": "https://dood.watch/e/l16bmglz5sxt"
+  },
+  {
+    "serial": 8,
+    "title": "Arjun Reddy",
+    "tmdb/imdb": "473234/tt7294534",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/lme43475aiep",
+    "host-2": "https://dood.watch/e/lme43475aiep"
+  },
+  {
+    "serial": 9,
+    "title": "Run",
+    "tmdb/imdb": "546121/tt8633478",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/44lbwmgnwaac",
+    "host-2": "https://voe.sx/e/44lbwmgnwaac"
+  },
+  {
+    "serial": 10,
+    "title": "Dear Comrade",
+    "tmdb/imdb": "563604/tt8388508",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/8imizkk03oeu",
+    "host-2": "https://dood.watch/e/8imizkk03oeu"
+  },
+  {
+    "serial": 11,
+    "title": "Rakshasudu",
+    "tmdb/imdb": "606224/tt10133300",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/9lrwguhnay8f",
+    "host-2": "https://dood.watch/e/9lrwguhnay8f"
+  },
+  {
+    "serial": 12,
+    "title": "Ala Vaikunthapurramuloo",
+    "tmdb/imdb": "628241/tt9537292",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/gb1h1nnknal9",
+    "host-2": "https://dood.watch/e/gb1h1nnknal9"
+  },
+  {
+    "serial": 13,
+    "title": "Nishabdham",
+    "tmdb/imdb": "648705/tt9605894",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/e0tp1bc7wytq",
+    "host-2": "https://dood.watch/e/e0tp1bc7wytq"
+  },
+  {
+    "serial": 14,
+    "title": "Eureka!",
+    "tmdb/imdb": "670591/tt24252646",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://www.youtube.com/embed/muZnCSTrq0g",
+    "host-2": "https://www.youtube.com/embed/muZnCSTrq0g"
+  },
+  {
+    "serial": 15,
+    "title": "V",
+    "tmdb/imdb": "683342/tt11385128",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/irtnqr9cn7e6",
+    "host-2": "https://dood.watch/e/irtnqr9cn7e6"
+  },
+  {
+    "serial": 16,
+    "title": "Pushpa: The Rise",
+    "tmdb/imdb": "690957/tt9389998",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://www.youtube.com/embed/571Rk1SLnME",
+    "host-2": "https://www.youtube.com/embed/571Rk1SLnME"
+  },
+  {
+    "serial": 17,
+    "title": "Muddula Menalludu",
+    "tmdb/imdb": "697271/tt12188220",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://www.youtube.com/embed/wLGLBWL70Ak",
+    "host-2": "https://www.youtube.com/embed/wLGLBWL70Ak"
+  },
+  {
+    "serial": 18,
+    "title": "Gatham",
+    "tmdb/imdb": "760981/tt13105536",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/o5aapgp1r5pt",
+    "host-2": "https://dood.watch/e/o5aapgp1r5pt"
+  },
+  {
+    "serial": 19,
+    "title": "Salaar: Part 1 - Ceasefire",
+    "tmdb/imdb": "770906/tt13927994",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/31328hfsbm0r",
+    "host-2": "https://dood.watch/e/31328hfsbm0r"
+  },
+  {
+    "serial": 20,
+    "title": "Akhanda",
+    "tmdb/imdb": "794961/tt11773378",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://www.youtube.com/embed/bBrLENtSjL0",
+    "host-2": "https://www.youtube.com/embed/bBrLENtSjL0"
+  },
+  {
+    "serial": 21,
+    "title": "Kalki 2898-AD",
+    "tmdb/imdb": "801688/tt12735488",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/cycjqr0qxmwb",
+    "host-2": "https://voe.sx/e/cycjqr0qxmwb"
+  },
+  {
+    "serial": 22,
+    "title": "Hero",
+    "tmdb/imdb": "803265/tt13611620",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/pzezdvpbdmzm",
+    "host-2": "https://voe.sx/e/pzezdvpbdmzm"
+  },
+  {
+    "serial": 23,
+    "title": "Game Changer",
+    "tmdb/imdb": "811944/tt14209618",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/ldqzsioovrma",
+    "host-2": "https://voe.sx/e/ldqzsioovrma"
+  },
+  {
+    "serial": 24,
+    "title": "Mad God",
+    "tmdb/imdb": "846867/tt15090124",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://mixdrop.ag/e/0vdrv0drs0x970",
+    "host-2": "https://mixdrop.ag/e/0vdrv0drs0x970"
+  },
+  {
+    "serial": 25,
+    "title": "Ustaad Bhagat Singh",
+    "tmdb/imdb": "868668/tt14338246",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/u4spsafmtjxq",
+    "host-2": "https://voe.sx/e/u4spsafmtjxq"
+  },
+  {
+    "serial": 26,
+    "title": "Hanu-Man",
+    "tmdb/imdb": "869760/tt15433956",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://filelions.to/v/qzmklpfryom9",
+    "host-2": "https://filelions.to/v/qzmklpfryom9"
+  },
+  {
+    "serial": 27,
+    "title": "Fear",
+    "tmdb/imdb": "880100/tt12830948",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/ym4y2biswqdx",
+    "host-2": "https://voe.sx/e/ym4y2biswqdx"
+  },
+  {
+    "serial": 28,
+    "title": "Gaami",
+    "tmdb/imdb": "886385/tt27657791",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/sr4a7ttxjgtz",
+    "host-2": "https://dood.watch/e/sr4a7ttxjgtz"
+  },
+  {
+    "serial": 29,
+    "title": "Sita Ramam",
+    "tmdb/imdb": "894803/tt20850406",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/fizi5ct79vqo",
+    "host-2": "https://dood.watch/e/fizi5ct79vqo"
+  },
+  {
+    "serial": 30,
+    "title": "Sookshmadarshini",
+    "tmdb/imdb": "950075/tt32495687",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/zuxpvdhg5v8b",
+    "host-2": "https://voe.sx/e/zuxpvdhg5v8b"
+  },
+  {
+    "serial": 31,
+    "title": "Top Gear",
+    "tmdb/imdb": "968609/tt23644054",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/bq9ne6n0st6s",
+    "host-2": "https://dood.watch/e/bq9ne6n0st6s"
+  },
+  {
+    "serial": 32,
+    "title": "The Rajasaab",
+    "tmdb/imdb": "1022453/tt23790696",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/pf87z2am64rt",
+    "host-2": "https://voe.sx/e/pf87z2am64rt"
+  },
+  {
+    "serial": 33,
+    "title": "Virupaksha",
+    "tmdb/imdb": "1034590/tt24059780",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/0fj4697pnsur",
+    "host-2": "https://dood.watch/e/0fj4697pnsur"
+  },
+  {
+    "serial": 34,
+    "title": "Zebra",
+    "tmdb/imdb": "1035998/tt27757690",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/bwuxmrhsebro",
+    "host-2": "https://voe.sx/e/bwuxmrhsebro"
+  },
+  {
+    "serial": 35,
+    "title": "Harom Hara",
+    "tmdb/imdb": "1040718/tt27726727",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/rgupp1fgjews",
+    "host-2": "https://dood.watch/e/rgupp1fgjews"
+  },
+  {
+    "serial": 36,
+    "title": "Peddi",
+    "tmdb/imdb": "1057265/tt23865918",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/cxbyz69bcfgi",
+    "host-2": "https://voe.sx/e/cxbyz69bcfgi"
+  },
+  {
+    "serial": 37,
+    "title": "HIT: The Third Case",
+    "tmdb/imdb": "1060046/tt23804696",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/4mvp3v5441gz",
+    "host-2": "https://voe.sx/e/4mvp3v5441gz"
+  },
+  {
+    "serial": 38,
+    "title": "Hi Nanna",
+    "tmdb/imdb": "1068452/tt25433734",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/17yaa0uptvn4",
+    "host-2": "https://dood.watch/e/17yaa0uptvn4"
+  },
+  {
+    "serial": 39,
+    "title": "They Call Him OG",
+    "tmdb/imdb": "1080365/tt24060892",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/m2eueunohplz",
+    "host-2": "https://voe.sx/e/m2eueunohplz"
+  },
+  {
+    "serial": 40,
+    "title": "Mangalavaaram",
+    "tmdb/imdb": "1093012/tt26763310",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/yhqji0uva3ab",
+    "host-2": "https://dood.watch/e/yhqji0uva3ab"
+  },
+  {
+    "serial": 41,
+    "title": "The Jewel Thief",
+    "tmdb/imdb": "1109715/tt27447330",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/xth9ibdn2eow",
+    "host-2": "https://voe.sx/e/xth9ibdn2eow"
+  },
+  {
+    "serial": 42,
+    "title": "Double iSmart",
+    "tmdb/imdb": "1127824/tt27610677",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/h1li1w6kcsj4",
+    "host-2": "https://dood.watch/e/h1li1w6kcsj4"
+  },
+  {
+    "serial": 43,
+    "title": "Satyabhama",
+    "tmdb/imdb": "1177157/tt28101019",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/bk2jjfsttmxm",
+    "host-2": "https://dood.watch/e/bk2jjfsttmxm"
+  },
+  {
+    "serial": 44,
+    "title": "Saripodhaa Sanivaaram",
+    "tmdb/imdb": "1194915/tt26903104",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/eiryp8h7zfxz",
+    "host-2": "https://dood.watch/e/eiryp8h7zfxz"
+  },
+  {
+    "serial": 45,
+    "title": "The Girlfriend",
+    "tmdb/imdb": "1196348/tt29606526",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/ek0dkkxuii69",
+    "host-2": "https://voe.sx/e/ek0dkkxuii69"
+  },
+  {
+    "serial": 46,
+    "title": "Daaku Maharaaj",
+    "tmdb/imdb": "1202235/tt27957740",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/zw4bb1q3dk1a",
+    "host-2": "https://dood.watch/e/zw4bb1q3dk1a"
+  },
+  {
+    "serial": 47,
+    "title": "Kota Bommali PS",
+    "tmdb/imdb": "1205282/tt28522313",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/f7nngfubyqdi",
+    "host-2": "https://dood.watch/e/f7nngfubyqdi"
+  },
+  {
+    "serial": 48,
+    "title": "Thandel",
+    "tmdb/imdb": "1208735/tt27907811",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/ifw8z65jn0g9",
+    "host-2": "https://dood.watch/e/ifw8z65jn0g9"
+  },
+  {
+    "serial": 49,
+    "title": "Mirai",
+    "tmdb/imdb": "1222479/tt30858568",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/17vj4jtxua8k",
+    "host-2": "https://voe.sx/e/17vj4jtxua8k"
+  },
+  {
+    "serial": 50,
+    "title": "Buddy",
+    "tmdb/imdb": "1230407/tt26235048",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/xqdtfw9mxjqo",
+    "host-2": "https://dood.watch/e/xqdtfw9mxjqo"
+  },
+  {
+    "serial": 51,
+    "title": "Mr Bachchan",
+    "tmdb/imdb": "1232219/tt28282872",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/i688lacpzh1h",
+    "host-2": "https://dood.watch/e/i688lacpzh1h"
+  },
+  {
+    "serial": 52,
+    "title": "Kannappa",
+    "tmdb/imdb": "1232232/tt5306972",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/iysdlc2di8pj",
+    "host-2": "https://voe.sx/e/iysdlc2di8pj"
+  },
+  {
+    "serial": 53,
+    "title": "Matka",
+    "tmdb/imdb": "1233327/tt28258888",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/1iizcnbgdenv",
+    "host-2": "https://dood.watch/e/1iizcnbgdenv"
+  },
+  {
+    "serial": 54,
+    "title": "Lucky Baskhar",
+    "tmdb/imdb": "1239511/tt27540542",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/a5d4v3t4v0uw",
+    "host-2": "https://dood.watch/e/a5d4v3t4v0uw"
+  },
+  {
+    "serial": 55,
+    "title": "Mr. Right",
+    "tmdb/imdb": "1239802/tt28639015",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://www.youtube.com/embed/tD3KLEXfZuA",
+    "host-2": "https://www.youtube.com/embed/tD3KLEXfZuA"
+  },
+  {
+    "serial": 56,
+    "title": "Chaari 111",
+    "tmdb/imdb": "1242191/tt29996716",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://filelions.to/v/un1q9ay0u1p1",
+    "host-2": "https://filelions.to/v/un1q9ay0u1p1"
+  },
+  {
+    "serial": 57,
+    "title": "Mathu Vadalara 2",
+    "tmdb/imdb": "1249902/tt33291871",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/e1yxw7x2ho4f",
+    "host-2": "https://dood.watch/e/e1yxw7x2ho4f"
+  },
+  {
+    "serial": 58,
+    "title": "Ghaati",
+    "tmdb/imdb": "1249926/tt31850699",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://bysejikuar.com/e/5hnmc5u008pf",
+    "host-2": "https://bysejikuar.com/e/5hnmc5u008pf"
+  },
+  {
+    "serial": 59,
+    "title": "Swag",
+    "tmdb/imdb": "1252542/tt28351127",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/r61kqmaa7tri",
+    "host-2": "https://dood.watch/e/r61kqmaa7tri"
+  },
+  {
+    "serial": 60,
+    "title": "Viswam",
+    "tmdb/imdb": "1273448/tt28630710",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/9u929rgswtay",
+    "host-2": "https://dood.watch/e/9u929rgswtay"
+  },
+  {
+    "serial": 61,
+    "title": "Aarambham",
+    "tmdb/imdb": "1288304/tt31436476",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/b30d6xp8ik3z",
+    "host-2": "https://dood.watch/e/b30d6xp8ik3z"
+  },
+  {
+    "serial": 62,
+    "title": "Shivam Bhaje",
+    "tmdb/imdb": "1324173/tt31711525",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/65gl8wduwn5n",
+    "host-2": "https://dood.watch/e/65gl8wduwn5n"
+  },
+  {
+    "serial": 63,
+    "title": "Aay",
+    "tmdb/imdb": "1330078/tt28359277",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/r2fzpqjt2kjd",
+    "host-2": "https://dood.watch/e/r2fzpqjt2kjd"
+  },
+  {
+    "serial": 64,
+    "title": "Gorre Puranam",
+    "tmdb/imdb": "1357429/tt28635681",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/0kyg6n4azz7x",
+    "host-2": "https://dood.watch/e/0kyg6n4azz7x"
+  },
+  {
+    "serial": 65,
+    "title": "Criminal or Devil",
+    "tmdb/imdb": "1377388/tt32424592",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/fbvcj4gvkjzl",
+    "host-2": "https://dood.watch/e/fbvcj4gvkjzl"
+  },
+  {
+    "serial": 66,
+    "title": "Appudo Ippudo Eppudo",
+    "tmdb/imdb": "1380109/tt16993888",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/hurim2n7g0th",
+    "host-2": "https://dood.watch/e/hurim2n7g0th"
+  },
+  {
+    "serial": 67,
+    "title": "Bhairavam",
+    "tmdb/imdb": "1388451/tt34442678",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/u7onhzd9vata",
+    "host-2": "https://dood.watch/e/u7onhzd9vata"
+  },
+  {
+    "serial": 68,
+    "title": "Laila",
+    "tmdb/imdb": "1403735/tt32831759",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/ot92si7bk2bj",
+    "host-2": "https://dood.watch/e/ot92si7bk2bj"
+  },
+  {
+    "serial": 69,
+    "title": "Santhana Prapthirasthu",
+    "tmdb/imdb": "1417854/tt33054635",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/ibwderx30mya",
+    "host-2": "https://voe.sx/e/ibwderx30mya"
+  },
+  {
+    "serial": 70,
+    "title": "Euphoria",
+    "tmdb/imdb": "1438392/tt33737583",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://bysejikuar.com/e/wsd1q5skde2w",
+    "host-2": "https://bysejikuar.com/e/wsd1q5skde2w"
+  },
+  {
+    "serial": 71,
+    "title": "Nagabandham: The Secret Treasure",
+    "tmdb/imdb": "1442396/tt32065777",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/r7gzkedkrk3v",
+    "host-2": "https://voe.sx/e/r7gzkedkrk3v"
+  },
+  {
+    "serial": 72,
+    "title": "Rao Bahadur",
+    "tmdb/imdb": "1443961/tt37895011",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/f6ryxlo8it1h",
+    "host-2": "https://voe.sx/e/f6ryxlo8it1h"
+  },
+  {
+    "serial": 73,
+    "title": "Subham",
+    "tmdb/imdb": "1449364/tt34376523",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://bysejikuar.com/e/306ifr86l32z",
+    "host-2": "https://bysejikuar.com/e/306ifr86l32z"
+  },
+  {
+    "serial": 74,
+    "title": "Raakaasa",
+    "tmdb/imdb": "1451078/tt36451817",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/k5geutyy1xzq",
+    "host-2": "https://voe.sx/e/k5geutyy1xzq"
+  },
+  {
+    "serial": 75,
+    "title": "Blind Spot",
+    "tmdb/imdb": "1479860/tt36591293",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/m69hn3dlbldg",
+    "host-2": "https://voe.sx/e/m69hn3dlbldg"
+  },
+  {
+    "serial": 76,
+    "title": "Om Shanti Shanti Shantihi",
+    "tmdb/imdb": "1508577/tt34446638",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/71uvqwgc7gne",
+    "host-2": "https://dood.watch/e/71uvqwgc7gne"
+  },
+  {
+    "serial": 77,
+    "title": "Meghalu Cheppina Prema Katha",
+    "tmdb/imdb": "1552492/tt37140876",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/1tpchd0ia9py",
+    "host-2": "https://dood.watch/e/1tpchd0ia9py"
+  },
+  {
+    "serial": 78,
+    "title": "S. Saraswathi",
+    "tmdb/imdb": "1552958/tt38525039",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://dood.watch/e/01f8gjjbp8ln",
+    "host-2": "https://dood.watch/e/01f8gjjbp8ln"
+  },
+  {
+    "serial": 79,
+    "title": "Eesha",
+    "tmdb/imdb": "1601310/tt39109585",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/mu55yesd5bkd",
+    "host-2": "https://voe.sx/e/mu55yesd5bkd"
+  },
+  {
+    "serial": 80,
+    "title": "Sing Geetham",
+    "tmdb/imdb": "1626170/tt34547719",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/u2wgam9rmf7q",
+    "host-2": "https://voe.sx/e/u2wgam9rmf7q"
+  },
+  {
+    "serial": 81,
+    "title": "Gedelaraju Kakinada Taluka",
+    "tmdb/imdb": "1685630/tt35182033",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://voe.sx/e/almq7scyh8gd",
+    "host-2": "https://voe.sx/e/almq7scyh8gd"
+  },
+  {
+    "serial": 82,
+    "title": "Police Complaint",
+    "tmdb/imdb": "1741006/tt42577497",
+    "extracted_at": "2026-08-21T11:47:36Z",
+    "host-1": "https://bysejikuar.com/e/qjj0q0sd3gbq",
+    "host-2": "https://bysejikuar.com/e/qjj0q0sd3gbq"
+  }
+]
